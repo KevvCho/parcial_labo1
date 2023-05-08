@@ -2,17 +2,6 @@ from unidecode import unidecode
 import re
 
 
-def leer_encabezado(archivo:str) -> list:
-    """
-    Brief: Lee la primera linea del archivo y se encarga de
-    separar los elementos
-    Return: Lista dividida de elementos
-    """
-    with open(archivo, "r") as archivo_csv:
-        encabezado = archivo_csv.readline().strip().split(",")
-    return encabezado
-
-
 def parsear_valor(valor:str, encabezado:list):
     """
     Brief: Dependiendo del tipo de dato encontrado en el encabezado
@@ -27,43 +16,6 @@ def parsear_valor(valor:str, encabezado:list):
         valor = valor.strip()
         
     return valor
-
-
-def leer_archivo_csv(archivo:str, encabezado:list) -> list:
-    """
-    Brief: Comienza a leer cada linea del archivo y genera
-    un diccionario asignandole valores segun el encabezado
-    Parameters: archivo = nombre del archivo
-                encabezado = lista de keys para asignar
-    Return: Lista completa con todos los datos ya asignados
-    """
-    datos = []
-    with open(archivo, "r") as archivo_csv:
-        archivo_csv.readline()
-        for linea in archivo_csv:
-            pokemon = {}
-            valores = linea.strip().split(",")
-            for i, valor in enumerate(valores):
-                encabezado_actual = encabezado[i]
-                pokemon[encabezado_actual] = parsear_valor(valor, encabezado_actual)
-            datos.append(pokemon)
-    return datos
-
-
-def traer_datos() -> list:
-    """
-    Brief: Genera una tupla con los elementos del archivo especificado
-    Return: Retorna la tupla con los datos ya parseados 
-    """
-    archivo = "pokemones.csv"
-    try:
-        encabezado = leer_encabezado(archivo)
-        pokemones = leer_archivo_csv(archivo, encabezado)
-        print("\n\u2713 Datos cargados exitosamente!\n")
-        pokemones = tuple(pokemones)
-        return pokemones
-    except:
-        print("\n\u274C Error tratando de acceder a los datos\n")
 
 
 def castear_informacion_str(valor:dict, tipo:str) -> str:
