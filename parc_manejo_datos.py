@@ -2,13 +2,23 @@ from unidecode import unidecode
 import re
 
 
-def leer_encabezado(archivo):
+def leer_encabezado(archivo:str) -> list:
+    """
+    Brief: Lee la primera linea del archivo y se encarga de
+    separar los elementos
+    Return: Lista dividida de elementos
+    """
     with open(archivo, "r") as archivo_csv:
         encabezado = archivo_csv.readline().strip().split(",")
     return encabezado
 
 
-def parsear_valor(valor, encabezado):
+def parsear_valor(valor:str, encabezado:list):
+    """
+    Brief: Dependiendo del tipo de dato encontrado en el encabezado
+    se encarga de parsear o separar en una lista los valores
+    Return: Dato ya modificado
+    """
     if encabezado in ("N° Pokedex", "Poder de Ataque", "Poder de Defensa"):
         valor = int(valor)
     elif encabezado in ("Tipo", "Habilidades"):
@@ -19,7 +29,14 @@ def parsear_valor(valor, encabezado):
     return valor
 
 
-def leer_archivo_csv(archivo, encabezado):
+def leer_archivo_csv(archivo:str, encabezado:list) -> list:
+    """
+    Brief: Comienza a leer cada linea del archivo y genera
+    un diccionario asignandole valores segun el encabezado
+    Parameters: archivo = nombre del archivo
+                encabezado = lista de keys para asignar
+    Return: Lista completa con todos los datos ya asignados
+    """
     datos = []
     with open(archivo, "r") as archivo_csv:
         archivo_csv.readline()
@@ -34,6 +51,10 @@ def leer_archivo_csv(archivo, encabezado):
 
 
 def traer_datos() -> list:
+    """
+    Brief: Genera una tupla con los elementos del archivo especificado
+    Return: Retorna la tupla con los datos ya parseados 
+    """
     archivo = "pokemones.csv"
     try:
         encabezado = leer_encabezado(archivo)
@@ -47,9 +68,12 @@ def traer_datos() -> list:
 
 def castear_informacion_str(valor:dict, tipo:str) -> str:
     """
-    Recibe un diccionario y un valor en el cual
+    Brief: Recibe un diccionario y un valor en el cual
     comprueba si es 1 o 2 elementos y normaliza.
     Retorna el valor casteado a string.
+    Parameters: valor = diccionario al que se accede
+                 tipo = tipo de dato a encontrar en el diccionario
+    Return: Retorna el dato unido como un string
     """
     tipo_dato = valor[tipo]
     tipolen = len(valor[tipo])
