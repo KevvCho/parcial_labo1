@@ -3,7 +3,7 @@ from parc_validaciones import *
 from parc_manejo_datos import *
 
 
-def listar_cantidad_tipo(pokemones:list) -> int:
+def listar_cantidad_tipo(pokemones:tuple) -> int:
     """
     Brief: A partir de una lista ya ordenada muestra en consola el valor
     de "tipo" y la cantidad total de elementos que comparten tipo.
@@ -23,7 +23,7 @@ def listar_cantidad_tipo(pokemones:list) -> int:
         return -1
 
 
-def listar_tipo(pokemones:list) -> int:
+def listar_tipo(pokemones:tuple) -> int:
     """
     Brief: Imprime en consola todos los pokemones que comparten
     el mismo elemento de "tipo" mostrando su nombre y 
@@ -78,7 +78,7 @@ def listar_general(objeto:dict, primer_valor_dict:str,
 {segundo_valor_dict}: {segundo_valor}")
     
 
-def listar_habilidad(pokemones):
+def listar_habilidad(pokemones:tuple) -> int:
     """
     Brief: Recibe una habilidad ingresada por el usuario y la busca en
     la lista proporcionada, si la encuentra muestra el nombre y tipo de
@@ -111,7 +111,7 @@ def listar_habilidad(pokemones):
     return 0
 
 
-def listar_ordenado(pokemones:list) -> int:
+def listar_ordenado(pokemones:tuple) -> int:
     """
     Brief: Utilizando una lista ordenada en base a poder de ataque y nombre como
     segunda condicion muestra en consola todos los datos provenientes del pokemon.

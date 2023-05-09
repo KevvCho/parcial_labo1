@@ -35,7 +35,7 @@ def leer_archivo_csv(archivo:str, encabezado:list) -> list:
     return datos
 
 
-def traer_datos() -> list:
+def traer_datos() -> tuple:
     """
     Brief: Genera una tupla con los elementos del archivo especificado
     Return: Retorna la tupla con los datos ya parseados 

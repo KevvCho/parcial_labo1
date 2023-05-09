@@ -60,7 +60,7 @@ def calcular_division(dividendo:int, divisor:int) -> float:
     return resultado
 
 
-def ordenar_lista(lista_recibida:list, valor_ordenamiento:str,
+def ordenar_lista(lista_recibida:list, primer_orden:str,
                  segundo_valor:str) -> list:
     """
     Brief: A partir de una lista y dos valores de ordenamiento utiliza 
@@ -79,10 +79,10 @@ def ordenar_lista(lista_recibida:list, valor_ordenamiento:str,
     for i in range(n):
         for j in range(0, n-i-1):
 
-            if int(lista_recibida[j][valor_ordenamiento]) < int(lista_recibida[j+1][valor_ordenamiento]):
+            if int(lista_recibida[j][primer_orden]) < int(lista_recibida[j+1][primer_orden]):
                 lista_recibida[j], lista_recibida[j+1] = lista_recibida[j+1], lista_recibida[j]
 
-            elif int(lista_recibida[j][valor_ordenamiento]) == int(lista_recibida[j+1][valor_ordenamiento]):
+            elif int(lista_recibida[j][primer_orden]) == int(lista_recibida[j+1][primer_orden]):
 
                 if lista_recibida[j][segundo_valor] > lista_recibida[j+1][segundo_valor]:
                     lista_recibida[j], lista_recibida[j+1] = lista_recibida[j+1], lista_recibida[j]
@@ -90,7 +90,7 @@ def ordenar_lista(lista_recibida:list, valor_ordenamiento:str,
     return lista_recibida
 
 
-def buscar_tipos(pokemones:list) -> list:
+def buscar_tipos(pokemones:tuple) -> list:
     """
     Brief: Recibe una lista, busca cada "tipo" existente y 
     agrega una unidad a su cantidad, en caso de no existir
@@ -119,7 +119,7 @@ def buscar_tipos(pokemones:list) -> list:
     return lista_tipos
 
 
-def calcular_promedio_poder(pokemones):
+def calcular_promedio_poder(pokemones:tuple) -> float:
     """
     Brief: Calcula el promedio del poder total de una lista de pokemones.
     Parameters: pokemones = Lista de pokemones.
@@ -134,7 +134,7 @@ def calcular_promedio_poder(pokemones):
     return promedio
 
 
-def buscar_pokemones_por_habilidad(pokemones, habilidad_busqueda):
+def buscar_pokemones_por_habilidad(pokemones:tuple, habilidad_busqueda:str) -> list:
     """
     Brief: Busca pokemones que contengan la habilidad ingresada por el usuario.
     Parameters: pokemones = Lista de pokemones, habilidad_busqueda = Habilidad a buscar.
