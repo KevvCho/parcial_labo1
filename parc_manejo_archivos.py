@@ -138,3 +138,27 @@ pokemones del tipo '{tipo_busqueda}':\n")
         print("\n\u2713-Se cargo el archivo con exito!\n")
     except:
         print(f"\nNo se encontró el archivo '{tipo_busqueda}_pokemones.json'")
+
+
+def guardar_csv(pokemones:tuple):
+
+    if len(pokemones) != 0:
+        nombre_archivo = "datos_actualizados.csv"
+
+        with open(nombre_archivo, 'w') as archivo:
+            encabezado = pokemones[0].keys()
+            archivo.write(','.join(encabezado) + '\n')
+
+            for pokemon in pokemones:
+                fila = []
+                for campo in encabezado:
+                    if type(pokemon[campo]) != int:
+                        valor = castear_informacion_str(pokemon, campo)
+                    else:
+                        valor = str(pokemon[campo])
+                    fila.append(valor)
+                linea = ','.join(fila) + '\n'
+                archivo.write(linea)
+        print(f"\nArchivo guardado exitosamente como {nombre_archivo}")
+    else:
+        print("\nLa lista de pokemones se encuentra vacia!")

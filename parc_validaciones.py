@@ -10,13 +10,13 @@ def validar_entero(numero_verificacion:str):
         return False
 
 
-def obtener_input_int() -> int:
+def obtener_input_int(texto:str) -> int:
     """
     Brief: Obtiene un input a validar que luego es casteado a entero
     Return: Si no se introduce un numero entero retorna -1
     """
 
-    respuesta = input("Ingrese un numero: ")
+    respuesta = input(texto)
     validacion = validar_entero(respuesta)
     if validacion == True:
         respuesta = int(respuesta)

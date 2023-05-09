@@ -13,7 +13,9 @@ def imprimir_menu():
     |                5- Listar pokemones ordenados                       |
     |                6- Guardar Json                                     |
     |                7- Leer Json                                        |
-    |                8- Salir                                            |
+    |                8- Agregar Pokemon                                  |
+    |                9- Guardar csv                                      |
+    |                10- Salir                                           |
     **********************************************************************
         """)
 
@@ -25,7 +27,7 @@ def iniciar_menu():
     while True:
 
         imprimir_menu()
-        opcion = obtener_input_int()
+        opcion = obtener_input_int("Ingrese una opcion: ")
 
         while opcion == -1:
             print("No es un caracter valido por favor reingrese la opcion")
@@ -55,6 +57,10 @@ def iniciar_menu():
                 # Leer Json
                 leer_archivo()
             case 8:
+                datos = agregar_pokemon(datos)
+            case 9:
+                guardar_csv(datos)
+            case 10:
                 # Salir
                 break
             case _:

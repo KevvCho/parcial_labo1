@@ -1,4 +1,5 @@
 from unidecode import unidecode
+from parc_validaciones import *
 import re
 
 
@@ -146,3 +147,43 @@ def buscar_pokemones_por_habilidad(pokemones:tuple, habilidad_busqueda:str) -> l
         if re.search(habilidad_busqueda, tipo_pokemon_str.lower()):
             pokemones_habilidad.append(pokemon)
     return pokemones_habilidad
+
+def agregar_pokemon(pokemones:tuple):
+
+    lista_pokemones = list(pokemones)
+
+    if len(lista_pokemones) != 0:
+        #numero_pokedex = obtener_input_int("Ingrese el numero de pokedex: ")
+        numero_pokedex = len(lista_pokemones) + 1
+        nombre_agregado = recibir_string("Ingrese el nombre del pokemon: ")
+        tipo = recibir_string("Ingrese el tipo: ")
+        poder_ataque = obtener_input_int("Ingrese el poder de ataque: ")
+        poder_defensa = obtener_input_int("Ingrese el poder de defensa: ")
+        habilidades = recibir_string("Ingrese las habilidades: ")
+
+        nuevo_pokemon = {
+                        'N° Pokedex': numero_pokedex,
+                        'Nombre': nombre_agregado,
+                        'Tipo': tipo,
+                        'Poder de Ataque': poder_ataque,
+                        'Poder de Defensa': poder_defensa,
+                        'Habilidades': habilidades
+                        }
+        
+        for pokemon in lista_pokemones:
+            nombre_pokemon = pokemon['Nombre'].lower()
+            if re.search(nombre_agregado, nombre_pokemon):
+                print("\nEste pokemon ya se encuentra en la lista")
+                print("\n Hubo un error agregando el pokemon")
+                return lista_pokemones
+    
+        lista_pokemones.append(nuevo_pokemon)
+
+        lista_pokemones = tuple(lista_pokemones)
+
+        print("\nPokemon agregado exitosamente!")
+        
+        return lista_pokemones
+    else:
+        print("\nLista de pokemones vacia, por favor carguela \
+antes de agregar un nuevo pokemon")
